@@ -5,11 +5,17 @@ from requests.api import get
 
 
 def get_current_price(steam_url:str):
+    """Given a Steam URI, the part after https://store.steampowered.com/app/,
+        This function retruns a float of a current price    
+    """
 
+    # we build the URL for the request 
     url = 'https://store.steampowered.com/app/'+ steam_url
 
     page = requests.get(url)
 
+
+    # once we get the request we use BS4 to parse the HTML
     soup = BeautifulSoup(page.text, 'html.parser')
 
     # TODO: need to reverse these in cases where bundles appear
